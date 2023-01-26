@@ -336,8 +336,31 @@ void Tetris::GetInitBlocksRotate44(TetriminoPosition pos[], int size, TetriminoA
 
 void Tetris::DrawBlock(HDC hdc, int column, int row, Color color)
 {
-    if (row < 0)
+    if (row < 0) {
         return;
+    }
+        
+    COLORREF colorref = GetColor(color);
+
+    // ペンとブラシを生成・選択
+    HPEN hPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+    HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
+    HBRUSH hBrush = CreateSolidBrush(colorref);
+    HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+
+    // 0行0列の位置を少しウィンドウの内側に移動させる
+    int x = column * BLOCK_SIZE + LeftTopBlockPosition.x;
+    int y = row * BLOCK_SIZE + LeftTopBlockPosition.y;
+    ::Rectangle(hdc, x, y, x + BLOCK_SIZE, y + BLOCK_SIZE);
+
+    // ペンとブラシをもとに戻す
+    SelectObject(hdc, hOldPen);
+    SelectObject(hdc, hOldBrush);
+
+    // 自分で作成したペンとブラシを削除する
+    DeleteObject(hPen);
+    DeleteObject(hBrush);
+
 }
 
 void Tetris::DrawOutsideBlocks(HDC hdc)

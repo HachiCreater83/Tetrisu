@@ -24,9 +24,8 @@ void Tetris::Init()
     m_holdTetrimino = TetriminoTypes::None;
     m_CanHold = TRUE;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
         m_DeleteLineNumbers[i] = -1;
-    }
 
     unsigned int now = (unsigned int)time(0);
     srand(now);
@@ -338,8 +337,8 @@ void Tetris::DrawBlock(HDC hdc, int column, int row, Color color)
 {
     if (row < 0) {
         return;
+
     }
-        
     COLORREF colorref = GetColor(color);
 
     // ペンとブラシを生成・選択
@@ -360,7 +359,6 @@ void Tetris::DrawBlock(HDC hdc, int column, int row, Color color)
     // 自分で作成したペンとブラシを削除する
     DeleteObject(hPen);
     DeleteObject(hBrush);
-
 }
 
 void Tetris::DrawOutsideBlocks(HDC hdc)
@@ -557,7 +555,7 @@ BOOL Tetris::CheckDeletingLines()
 BOOL Tetris::CanRotate(BOOL isRight, int x, int y)
 {
     TetriminoAngle nextAngle;
-    if (isRight)
+    if(isRight)
         nextAngle = TetriminoAngle::Angle90;
     else
         nextAngle = TetriminoAngle::Angle270;
@@ -568,25 +566,11 @@ BOOL Tetris::CanRotate(BOOL isRight, int x, int y)
     GetTetriminosPosition(tetri, 4);
     for (int i = 0; i < 4; i++)
     {
-        /*tetri[i].m_column -= m_TetriminoPositionX;
-        tetri[i].m_row -= m_TetriminoPositionY;*/
-
-        if (tetri[i].m_column + x > COLUMN_MAX - 1)
-            return FALSE;
-        if (tetri[i].m_column + x < 0)
-            return FALSE;
-        if (tetri[i].m_row + y > ROW_MAX - 1)
-            return FALSE;
-
-        if (tetri[i].m_row + y < 0) // この場合は評価しない
-            continue;
-
-        if (m_FixedBlocks[tetri[i].m_row + y][tetri[i].m_column + x] != NULL)
-            return FALSE;
-
+        tetri[i].m_column -= m_TetriminoPositionX;
+        tetri[i].m_row -= m_TetriminoPositionY;
     }
 
-    if (m_CurTetriminoType != TetriminoTypes::I && m_CurTetriminoType != TetriminoTypes::O)
+    if(m_CurTetriminoType != TetriminoTypes::I && m_CurTetriminoType != TetriminoTypes::O)
         GetInitBlocksRotate33(tetri, 4, nextAngle);
     else if (m_CurTetriminoType == TetriminoTypes::I)
         GetInitBlocksRotate44(tetri, 4, nextAngle);
@@ -605,13 +589,14 @@ BOOL Tetris::CanRotate(BOOL isRight, int x, int y)
         tetri[i].m_row += m_TetriminoPositionY;
     }
 
-    //　当たり判定をおこなう
+    // これで回転後のブロックの座標が取得できた
+    //　後は当たり判定をおこなう
     // フィールドの外に出たり、すでに固定されているブロックがある場合は移動・回転できない
     for (int i = 0; i < 4; i++)
     {
         if (tetri[i].m_column > COLUMN_MAX - 1)
             return FALSE;
-        if (tetri[i].m_column < 0)
+        if (tetri[i].m_column < 0)  
             return FALSE;
         if (tetri[i].m_row > ROW_MAX - 1)
             return FALSE;
@@ -620,7 +605,6 @@ BOOL Tetris::CanRotate(BOOL isRight, int x, int y)
     }
     return TRUE;
 }
-
 BOOL Tetris::RotateRight()
 {
     BOOL ret = FALSE;
@@ -1356,9 +1340,9 @@ BOOL Tetris::Hold()
 {
     // ホールドできない場合はなにもしない
     if (m_CanHold == FALSE)
-    {
-        return FALSE;
-    }
+      return FALSE;
+        
+    
 
     // ホールドしたら設置されるまでホールドはできなくなる
     m_CanHold = FALSE;

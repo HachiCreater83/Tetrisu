@@ -1,6 +1,7 @@
 
 #include "all.h"
 
+
 MainWindow::MainWindow(HINSTANCE hInstance)
 {
     Create();
@@ -16,7 +17,7 @@ void MainWindow::Create()
     myProg.hInstance = m_hInstance;
     myProg.hIcon = NULL;
     myProg.hCursor = LoadCursor(NULL, IDC_ARROW);
-    myProg.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); // îwåiÇçïÇ…Ç∑ÇÈ
+    myProg.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH); // îwåiÇçïÇ…Ç∑ÇÈ
     myProg.lpszMenuName = NULL;
     myProg.lpszClassName = m_szClassNme;
     RegisterClass(&myProg);
@@ -127,6 +128,7 @@ LRESULT MainWindow::OnKeyDown(WPARAM wp, LPARAM lp)
 
     case VK_DOWN:
         m_Tetris.m_IsSoftDrop = FALSE;
+        ret = m_Tetris.MoveDown();
         break;
 
     case VK_LEFT:
@@ -145,6 +147,9 @@ LRESULT MainWindow::OnKeyDown(WPARAM wp, LPARAM lp)
         ret = m_Tetris.RotateRight();
         break;
 
+    case 'C':
+        ret = m_Tetris.Hold();
+        break;
     case VK_SPACE:
         ret = m_Tetris.HardDrop();
         break;

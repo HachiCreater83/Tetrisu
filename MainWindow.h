@@ -1,5 +1,8 @@
 #pragma once
 
+
+
+
 class MainWindow
 {
     HWND m_hWnd = NULL;
@@ -9,6 +12,8 @@ class MainWindow
     const WCHAR* m_szTitle = L"C++テトリス";
 
     Tetris m_Tetris; // ゲームの本体になるオブジェクト
+
+    BOOL PlaySound(LPCSTR pszSound, HMODULE hmod, DWORD fdwSound);
 
 public:
     MainWindow(HINSTANCE hInstance);
@@ -23,7 +28,6 @@ public:
 
     LRESULT OnPaint(WPARAM wp, LPARAM lp);
 
-    // ここから下を追加
     LRESULT OnTimer(WPARAM wp, LPARAM lp);
     LRESULT OnKeyDown(WPARAM wp, LPARAM lp);
     LRESULT OnKeyUp(WPARAM wp, LPARAM lp);

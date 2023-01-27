@@ -16,6 +16,7 @@ class TetriminoPosition
 public:
     int m_column = 0;
     int m_row = 0;
+
 };
 
 enum class TetriminoAngle

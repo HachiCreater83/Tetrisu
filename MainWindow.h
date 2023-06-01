@@ -1,8 +1,6 @@
 #pragma once
 
-
-
-
+//ゲーム画面を構成するクラス
 class MainWindow
 {
     HWND m_hWnd = NULL;
@@ -11,15 +9,15 @@ class MainWindow
     const WCHAR* m_szClassNme = L"MyClassName1";
     const WCHAR* m_szTitle = L"C++テトリス";
 
-    Tetris m_Tetris; // ゲームの本体になるオブジェクト
-
-    BOOL PlaySound(LPCSTR pszSound, HMODULE hmod, DWORD fdwSound);
+    //ゲームの本体になるオブジェクト
+    Tetris m_Tetris;
 
 public:
+    //メモリの読み込み
     MainWindow(HINSTANCE hInstance);
 
+    //ゲーム情報の生成
     void Create();
-
     static LRESULT CALLBACK WndProcStatic(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
     LRESULT WndProc(UINT msg, WPARAM wp, LPARAM lp);
 

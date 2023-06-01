@@ -1,4 +1,7 @@
+
 #pragma once
+
+//ブロックの色を指定するクラス
 enum class Color
 {
     Aqua, // Iミノ（水色）
@@ -11,14 +14,15 @@ enum class Color
     Gray, // 外枠用
 };
 
+//ブロックの初期ポジションの設定するクラス
 class TetriminoPosition
 {
 public:
     int m_column = 0;
     int m_row = 0;
-
 };
 
+//ブロックが回転した際の角度を指定するクラス
 enum class TetriminoAngle
 {
     Angle0,
@@ -27,6 +31,7 @@ enum class TetriminoAngle
     Angle270,
 };
 
+//ブロックの形を構成するクラス
 enum class TetriminoTypes
 {
     I,
@@ -39,6 +44,7 @@ enum class TetriminoTypes
     None,
 };
 
+//ブロック情報を構成するクラス
 class Block
 {
 public:

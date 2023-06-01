@@ -1,10 +1,16 @@
+
 #pragma once
 
-// 10列20行
+//画面表示のマクロ
+//10列,20行で表示を行う
 #define COLUMN_MAX 10
 #define ROW_MAX 20
 #define BLOCK_SIZE 20
 
+//名前空間の宣言
+using namespace std;
+
+//ブロックを構成するクラス
 class Tetris
 {
 	// 初期化
@@ -19,8 +25,6 @@ private:
 private:
 	vector<TetriminoTypes> m_vectorTetriminoTypes;
 	void CreateBag();
-
-private:
 	void ResetTimer();
 
 	// 落下中のテトロミノの位置・状態を保存する変数
@@ -32,16 +36,16 @@ private:
 
 	// 落下中のテトロミノの位置の取得関連
 private:
-	void GetTetriminosPosition(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionI(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionJ(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionL(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionO(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionS(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionZ(TetriminoPosition tetri[], int size);
-	void GetInitBlocksPositionT(TetriminoPosition tetri[], int size);
-	void GetInitBlocksRotate33(TetriminoPosition tetri[], int size, TetriminoAngle angle);
-	void GetInitBlocksRotate44(TetriminoPosition tetri[], int size, TetriminoAngle angle);
+	void GetTetriminosPosition(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionI(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionJ(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionL(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionO(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionS(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionZ(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksPositionT(TetriminoPosition tetrimino[], int size);
+	void GetInitBlocksRotate33(TetriminoPosition tetrimino[], int size, TetriminoAngle angle);
+	void GetInitBlocksRotate44(TetriminoPosition tetrimino[], int size, TetriminoAngle angle);
 
 	// 表示色取得関連
 private:
@@ -146,10 +150,3 @@ public:
 	BOOL IsGameOver();
 	void Retry();
 };
-
-
-
-
-
-
-
